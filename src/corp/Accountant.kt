@@ -7,7 +7,7 @@ class Accountant(
     name: String,
     age: Int,
     id: Int = -1
-): Worker(name = name, age = age, id = id, position = Positions.ACCOUNTANT) {
+): Worker(name = name, age = age, id = id, position = Positions.ACCOUNTANT), Cleaner, Supplier {
 
     override fun work() {
         chooseOpt()
@@ -211,7 +211,7 @@ class Accountant(
         }
     }
 
-    private fun loadEmployeesFromFile(): MutableList<Worker> {
+    fun loadEmployeesFromFile(): MutableList<Worker> {
         val employees: MutableList<Worker> = mutableListOf()
 
         if (!fileOfEmployees.exists()) fileOfEmployees.createNewFile()

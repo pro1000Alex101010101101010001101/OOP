@@ -6,7 +6,7 @@ class Consultant (
     name: String,
     age : Int,
     id: Int = -2
-): Worker(name = name, age = age, id = id, position = Positions.CONSULTANT)   {
+): Worker(name = name, age = age, id = id, position = Positions.CONSULTANT), Cleaner {
 
 
     fun sayHi(){

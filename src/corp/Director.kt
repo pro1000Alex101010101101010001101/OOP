@@ -4,7 +4,7 @@ class Director(
     name: String,
     age: Int,
     id: Int = -3
-): Worker(name = name, age = age, id = id, position = Positions.DIRECTOR) {
+): Worker(name = name, age = age, id = id, position = Positions.DIRECTOR), Supplier {
 
     override fun work(){
         println("I'm drinking coffee")
