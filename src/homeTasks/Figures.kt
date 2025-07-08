@@ -21,14 +21,12 @@ class Circle(
 
     override fun area(): Double {
         val area = PI * radius * radius
-        roundToTwoDecimals(area)
-        return area
+        return roundToTwoDecimals(area)
     }
 
     override fun perimeter(): Double {
         val perimeter = 2 * PI * radius
-        roundToTwoDecimals(perimeter)
-        return perimeter
+        return roundToTwoDecimals(perimeter)
     }
 }
 
@@ -40,13 +38,11 @@ class Rectangle(
 
     override fun area(): Double {
         val area = width * height
-        roundToTwoDecimals(area)
-        return area
+        return roundToTwoDecimals(area)
     }
 
     override fun perimeter(): Double {
         val perimeter = 2 * (width + height)
-        roundToTwoDecimals(perimeter)
-        return perimeter
+        return roundToTwoDecimals(perimeter)
     }
 }
