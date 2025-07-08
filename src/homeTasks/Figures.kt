@@ -7,7 +7,7 @@ import kotlin.math.round
 
 fun Double.round(decimals: Int = 2): Double {
     val multiplier = 10.0.pow(decimals)
-    return round(this * multiplier) / multiplier  // <- Правильный порядок!
+    return round(this * multiplier) / multiplier
 }
 
 abstract class Shape(val name: String){
