@@ -8,7 +8,6 @@ class Appliances(
 ):ProductCard(name = name, price = price, brand = brand, productType = ProductType.APPLIANCE)  {
 
     override fun printInfo() {
-        super.printInfo()
-        println("Power: $power")
+        println("Name: $name Brand: $brand Price: $price Power: $power")
     }
 }

@@ -1,6 +1,6 @@
 package corp
 
-open class ProductCard(
+abstract class ProductCard(
     val name: String,
     val brand: String,
     val price: Int,
@@ -8,7 +8,5 @@ open class ProductCard(
 ){
 
 
-    open fun printInfo(){
-        print("Name: $name Brand: $brand Price: $price ")
-    }
+abstract fun printInfo()
 }
