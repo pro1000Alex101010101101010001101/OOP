@@ -8,6 +8,9 @@ class Consultant (
     id: Int = -2
 ): Worker(name = name, age = age, id = id, position = Positions.CONSULTANT), Cleaner {
 
+    override fun clean() {
+        ("My position is Consultant and I'm cleaning the workplace")
+    }
 
     fun sayHi(){
         println("Hi, i'm $name")
