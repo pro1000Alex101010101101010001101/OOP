@@ -9,6 +9,10 @@ class Accountant(
     id: Int = -1
 ): Worker(name = name, age = age, id = id, position = Positions.ACCOUNTANT), Cleaner, Supplier {
 
+    override fun clean() {
+        ("My position is Accountant and I'm cleaning the workplace")
+    }
+
     override fun work() {
         chooseOpt()
     }
@@ -229,7 +233,7 @@ class Accountant(
             val name = properties[1]
             val age = properties[2].toInt()
             val type = properties.last()
-            val posType = Positions.valueOf(type)
+            val posType = Positions.valueOf(type.uppercase())
 
             val employee = when (posType) {
                 Positions.DIRECTOR -> Director(id = id, name = name, age = age)
