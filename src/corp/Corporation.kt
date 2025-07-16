@@ -1,10 +1,8 @@
 package corp
 
 fun main() {
-    val accountant = Accountant("Alex", 39)
-    val employees: MutableList<Worker> = accountant.loadEmployeesFromFile()
-
-    accountant.chooseOpt()
+    val accountant = Accountant("Alex", 3, salary = 10000)
+    accountant.work()
 //    for (employee in employees) {
 //        if (employee is Cleaner) {
 //            employee.clean()
