@@ -3,8 +3,15 @@ package corp
 class Assistant(
     name: String,
     age: Int,
-    id: Int = -4
-): Worker(name = name, age = age, id = id, position = Positions.ASSISTANT), Cleaner, Supplier {
+    id: Int = -4,
+    salary: Int
+): Worker(
+    name = name,
+    age = age,
+    id = id,
+    position = Positions.ASSISTANT,
+    salary = salary
+), Cleaner, Supplier {
 
     override fun clean() {
         ("My position is Assistant and I'm cleaning the workplace")

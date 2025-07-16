@@ -3,8 +3,9 @@ package corp
 class Director(
     name: String,
     age: Int,
-    id: Int = -3
-): Worker(name = name, age = age, id = id, position = Positions.DIRECTOR), Supplier {
+    id: Int = -3,
+    salary: Int
+): Worker(name = name, age = age, id = id, position = Positions.DIRECTOR, salary = salary), Supplier {
 
     override fun work(){
         println("I'm drinking coffee")

@@ -8,5 +8,6 @@ enum class Operation(val command: String) {
     DELETE(command = "Delete the product"),
     REG_NEW_EMPLOYEE(command = "Register new employee"),
     FIRE(command = "Fire the employee"),
-    SHOW_EMPLOYEES(command = "Show all employees")
+    SHOW_EMPLOYEES(command = "Show all employees"),
+    CHANGE_SALARY(command = "Change the salary")
 }
