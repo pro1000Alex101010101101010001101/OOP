@@ -7,26 +7,6 @@ class ProductsRepository {
     private val file = File("ProductList")
     val products  = loadCardsFromFile()
 
-    private fun saveProductCardToFile(productCard: ProductCard) {
-        file.appendText("${productCard.name}%${productCard.brand}%${productCard.price}%")
-        when (productCard) {
-            is Food -> {
-                val calories = productCard.calories
-                file.appendText("$calories%${ProductType.FOOD}\n")
-            }
-
-            is Appliances -> {
-                val power = productCard.power
-                file.appendText("$power%${ProductType.APPLIANCE}\n")
-            }
-
-            is Shoes -> {
-                val size = productCard.size
-                file.appendText("$size%${ProductType.SHOE}\n")
-            }
-        }
-    }
-
     fun saveProductCard(productCard: ProductCard) {
         products.add(productCard)
     }
