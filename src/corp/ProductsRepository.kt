@@ -2,24 +2,26 @@ package corp
 
 import java.io.File
 
-class ProductsRepository {
+object ProductsRepository {
 
     private val file = File("ProductList")
-    val products  = loadCardsFromFile()
+    private val _products  = loadCardsFromFile()
+    val products
+        get() = _products.toList()
 
     fun saveProductCard(productCard: ProductCard) {
-        products.add(productCard)
+        _products.add(productCard)
     }
 
     private fun loadCardsFromFile(): MutableList<ProductCard> {
-        val cards: MutableList<ProductCard> = mutableListOf()
+        val products: MutableList<ProductCard> = mutableListOf()
 
         if (!file.exists()) file.createNewFile()
 
         val content = file.readText().trim()
 
         if (content.isEmpty()) {
-            return cards
+            return products
         }
 
         val cardsAsString = content.split("\n")
@@ -44,15 +46,15 @@ class ProductsRepository {
                     Shoes(name, brand, price, size)
                 }
             }
-            cards.add(productCard)
+            products.add(productCard)
         }
-        return cards
+        return products
     }
 
     fun removeProductCard(name: String) {
-        for (product in products){
+        for (product in _products){
             if (product.name == name){
-                products.remove(product)
+                _products.remove(product)
                 println("THE PRODUCT HAS BEEN DELETED!")
                 break
             }
@@ -61,7 +63,7 @@ class ProductsRepository {
 
     fun saveChanges() {
         val content = StringBuilder()
-        for (product in products){
+        for (product in _products){
             val upgradedContent = content.append("${product.name}%${product.brand}%${product.price}%")
             when (product) {
                 is Food -> upgradedContent.append("${product.calories}%${ProductType.FOOD}\n")

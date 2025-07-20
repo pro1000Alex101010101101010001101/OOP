@@ -2,25 +2,27 @@ package corp
 
 import java.io.File
 
-class WorkersRepository {
+object WorkersRepository {
 
+    private val _workers = loadEmployeesFromFile()
     private val fileOfWorkers = File("List_of_workers")
-    val workers = loadEmployeesFromFile()
+    val workers
+        get() = _workers.toList()
 
     fun register(worker: Worker) {
-        workers.add(worker)
+        _workers.add(worker)
     }
 
 
     private fun loadEmployeesFromFile(): MutableList<Worker> {
-        val employees: MutableList<Worker> = mutableListOf()
+        val workers: MutableList<Worker> = mutableListOf()
 
         if (!fileOfWorkers.exists()) fileOfWorkers.createNewFile()
 
         val content = fileOfWorkers.readText().trim()
 
         if (content.isEmpty()) {
-            return employees
+            return workers
         }
 
         val posAsStrings = content.split("\n")
@@ -39,22 +41,22 @@ class WorkersRepository {
                 Positions.ASSISTANT -> Assistant(id = id, name = name, age = age, salary = salary )
                 Positions.CONSULTANT -> Consultant(id = id, name = name, age = age, salary = salary )
             }
-            employees.add(employee)
+            workers.add(employee)
         }
-        return employees
+        return workers
     }
 
     fun fireEmployee(id: Int) {
-        for (worker in workers) {
+        for (worker in _workers) {
             if (worker.id == id) {
-                workers.remove(worker)
+                _workers.remove(worker)
                 break
             }
         }
     }
 
     fun changeSalary(id: Int, salary: Int) {
-        for (worker in workers) {
+        for (worker in _workers) {
             if (worker.id == id) {
                 worker.setSalary(salary)
             }
@@ -63,7 +65,7 @@ class WorkersRepository {
 
     fun saveChanges() {
         val content = StringBuilder()
-        for (worker in workers) {
+        for (worker in _workers) {
             content.append("${worker.id}%${worker.name}%${worker.age}%${worker.getSalary()}%${worker.position}\n")
         }
         fileOfWorkers.writeText(content.toString())

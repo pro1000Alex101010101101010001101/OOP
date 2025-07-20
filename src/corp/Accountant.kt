@@ -1,7 +1,5 @@
 package corp
 
-import java.io.File
-
 
 class Accountant(
     name: String,
@@ -24,8 +22,8 @@ class Accountant(
         chooseOpt()
     }
 
-    private val productsRepository = ProductsRepository()
-    private val workersRepository = WorkersRepository()
+    private val productsRepository = ProductsRepository
+    private val workersRepository = WorkersRepository
 
     private fun chooseOpt() {
         while (true) {
@@ -37,6 +35,7 @@ class Accountant(
             print("Operation: ")
             when (readln().toIntOrNull()) {
                 0 -> {
+                    productsRepository.saveChanges()
                     workersRepository.saveChanges()
                     return
                 }
@@ -107,7 +106,7 @@ class Accountant(
     }
 
     private fun showAllProducts() {
-        val cards: MutableList<ProductCard> = productsRepository.products
+        val cards= productsRepository.products
         for (card in cards) {
             card.printInfo()
         }
@@ -160,15 +159,15 @@ class Accountant(
     }
 
     private fun showAllEmployees() {
-        val employees: MutableList<Worker> = workersRepository.workers
+        val workers = workersRepository.workers
 
-        if (employees.isEmpty()) {
+        if (workers.isEmpty()) {
             println("You need to add someone first!")
             return
         }
 
-        for (employee in employees) {
-            employee.printInfo()
+        for (worker in workers) {
+            worker.printInfo()
         }
     }
 }

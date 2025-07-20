@@ -33,6 +33,4 @@ open class Worker(
     override fun toString(): String {
         return "Id: $id Name: $name Age: $age Position: $position Salary: $salary"
     }
-
-
 }
