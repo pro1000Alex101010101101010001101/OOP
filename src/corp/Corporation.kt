@@ -1,13 +1,13 @@
 package corp
 
 fun main() {
-    val accountant = Accountant("Alex", 3, salary = 10000)
-    accountant.work()
-//    for (employee in employees) {
-//        if (employee is Cleaner) {
-//            employee.clean()
-//        }
-//    }
+    val workers = WorkersRepository.workers
+    for (worker in workers) {
+        worker.work()
+        if (worker is Cleaner) {
+            worker.clean()
+        }
+    }
 }
 //
 //    val shoeCard1 = Shoes(name = "Sneakers", brand = "Nike", size = 48.0F, price =  19000)

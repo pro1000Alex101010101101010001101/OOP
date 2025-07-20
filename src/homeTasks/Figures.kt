@@ -10,11 +10,9 @@ fun Double.round(decimals: Int = 2): Double {
     return round(this * multiplier) / multiplier  // <- Правильный порядок!
 }
 
-abstract class Shape(val name: String){
-
+abstract class Shape(val name: String) {
     abstract fun area(): Double
     abstract fun perimeter(): Double
-
 }
 
 class Circle(
@@ -24,7 +22,6 @@ class Circle(
     init {
         require(radius > 0) { "Радиус не может быть отрицательным, идиотина!" }
     }
-
     override fun area(): Double = (PI * radius * radius).round(2)
     override fun perimeter(): Double = (2 * PI * radius).round(2)
 }
@@ -38,8 +35,8 @@ class Rectangle(
         require(width > 0 && height > 0) { "Отрицательная длина и ширина???? Ты в черной дыре, еблан?" }
     }
 
-    override fun area(): Double = (width * height).round(2)
-    override fun perimeter(): Double = 2 * (width + height).round(2)
+    override fun area(): Double = (width * height).round()
+    override fun perimeter(): Double = 2 * (width + height).round()
 }
 
 object Shapes {
