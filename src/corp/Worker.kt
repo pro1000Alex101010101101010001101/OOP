@@ -1,36 +1,25 @@
 package corp
 
-open class Worker(
-    val name: String,
-    val age: Int,
-    val id: Int,
-    private var salary: Int = 15000,
-    val position: Positions
-){
+abstract class Worker(
+    open val name: String,
+    open val age: Int,
+    open val id: Int,
+    open val salary: Int = 15000,
+    open val position: Positions
+) {
+
+    abstract fun copy(
+        name: String = this.name,
+        age: Int = this.age,
+        id: Int = this.id,
+        salary: Int = this.salary,
+        positions: Positions = this.position
+    ): Worker
 
 
+    abstract fun work()
 
-    fun setSalary(salary: Int) {
-        if (salary < this.salary) {
-            println("This salary is too small")
-        } else {
-            this.salary = salary
-        }
-    }
-
-    fun getSalary(): Int {
-        return this.salary
-    }
-
-    open fun work() {
-        println("I'm working")
-    }
-
-    open fun printInfo(){
+    open fun printInfo() {
         println(this)
-    }
-
-    override fun toString(): String {
-        return "Id: $id Name: $name Age: $age Position: $position Salary: $salary"
     }
 }

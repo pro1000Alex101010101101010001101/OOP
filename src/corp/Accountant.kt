@@ -1,11 +1,10 @@
 package corp
 
-
-class Accountant(
-    name: String,
-    age: Int,
-    id: Int = -1,
-    salary: Int
+data class Accountant(
+    override val name: String,
+    override val age: Int,
+    override val id: Int = -1,
+    override val salary: Int
 ): Worker(
     name = name,
     age = age,
@@ -21,6 +20,17 @@ class Accountant(
     override fun work() {
         chooseOpt()
     }
+
+    override fun copy(
+        name: String,
+        age: Int,
+        id: Int,
+        salary: Int,
+        positions: Positions
+    ): Worker {
+        return copy(name= name, age = age, id = id, salary = salary)
+    }
+
 
     private val productsRepository = ProductsRepository
     private val workersRepository = WorkersRepository

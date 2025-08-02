@@ -1,10 +1,10 @@
 package corp
 
-class Assistant(
-    name: String,
-    age: Int,
-    id: Int = -4,
-    salary: Int
+data class Assistant(
+    override val name: String,
+    override val age: Int,
+    override val id: Int = -4,
+    override val salary: Int
 ): Worker(
     name = name,
     age = age,
@@ -15,6 +15,16 @@ class Assistant(
 
     override fun clean() {
         ("My position is Assistant and I'm cleaning the workplace")
+    }
+
+    override fun copy(
+        name: String,
+        age: Int,
+        id: Int,
+        salary: Int,
+        positions: Positions
+    ): Worker {
+        return copy(name= name, age = age, id = id, salary = salary)
     }
 
     fun bringCoffee(drinkName: String = "Cappuccino", count: Int = 1): String{
