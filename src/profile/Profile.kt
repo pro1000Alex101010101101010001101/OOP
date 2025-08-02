@@ -2,33 +2,19 @@ package profile
 
 fun main() {
 
-    print("What is ur name: ")
-    val firstName = readln()
+    val first = Person("lex", 23,45, 160, "M")
+    val second = Person(name = "mark", age = 21, weight = 75, height = 170, lastName = "B")
+    var third = Person("lex", 23,45, 160, "M")
 
-    print("What is ur name: ")
-    val secondName = readln()
+    val persons = mutableSetOf<Person>(first, second, third)
 
-    print("What is ur age: ")
-    val firstAge = readln().toInt()
+    for (person in persons) {
+        person.sayHello()
+    }
+    third = third.copy(name = "Alex")
+    persons.add(third)
 
-    print("What is ur age: ")
-    val secondAge = readln().toInt()
-
-    print("What is ur weight: ")
-    val firstWeight = readln().toInt()
-
-    print("What is ur weight: ")
-    val secondWeight = readln().toInt()
-
-    print("What is ur height: ")
-    val firstHeight = readln().toInt()
-
-    print("What is ur height: ")
-    val secondHeight = readln().toInt()
-
-    val first = Person(firstName, firstAge,firstWeight, firstHeight)
-    val second = Person(name = secondName, age = secondAge, weight = secondWeight, height = secondHeight)
-
-    first.sayHello()
-    second.sayHello()
+    for (person in persons) {
+        person.sayHello()
+    }
 }
