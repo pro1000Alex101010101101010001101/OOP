@@ -4,21 +4,20 @@ import java.io.File
 
 object WorkersRepository {
 
-    private val _workers = loadEmployeesFromFile()
     private val fileOfWorkers = File("List_of_workers")
+    private val _workers = loadEmployeesFromFile()
+
     val workers
         get() = _workers.toList()
 
-    fun register(worker: Worker) {
-        _workers.add(worker)
+    fun register(newWorker: Worker) {
+        _workers.add(newWorker)
     }
 
-
-    private fun loadEmployeesFromFile(): MutableList<Worker> {
-        val workers: MutableList<Worker> = mutableListOf()
+    private fun loadEmployeesFromFile(): MutableSet<Worker> {
+        val workers: MutableSet<Worker> = mutableSetOf()
 
         if (!fileOfWorkers.exists()) fileOfWorkers.createNewFile()
-
         val content = fileOfWorkers.readText().trim()
 
         if (content.isEmpty()) {
@@ -36,10 +35,10 @@ object WorkersRepository {
             val posType = Positions.valueOf(type.uppercase())
 
             val employee = when (posType) {
-                Positions.DIRECTOR -> Director(id = id, name = name, age = age, salary = salary )
-                Positions.ACCOUNTANT -> Accountant(id = id, name = name, age = age, salary = salary )
-                Positions.ASSISTANT -> Assistant(id = id, name = name, age = age, salary = salary )
-                Positions.CONSULTANT -> Consultant(id = id, name = name, age = age, salary = salary )
+                Positions.DIRECTOR -> Director(id = id, name = name, age = age, salary = salary)
+                Positions.ACCOUNTANT -> Accountant(id = id, name = name, age = age, salary = salary)
+                Positions.ASSISTANT -> Assistant(id = id, name = name, age = age, salary = salary)
+                Positions.CONSULTANT -> Consultant(id = id, name = name, age = age, salary = salary)
             }
             workers.add(employee)
         }
@@ -58,7 +57,10 @@ object WorkersRepository {
     fun changeSalary(id: Int, salary: Int) {
         for (worker in _workers) {
             if (worker.id == id) {
-                worker.setSalary(salary)
+                val newWorker = worker.copy(salary = salary)
+                _workers.remove(worker)
+                _workers.add(newWorker)
+                break
             }
         }
     }
@@ -66,8 +68,26 @@ object WorkersRepository {
     fun saveChanges() {
         val content = StringBuilder()
         for (worker in _workers) {
-            content.append("${worker.id}%${worker.name}%${worker.age}%${worker.getSalary()}%${worker.position}\n")
+            content.append("${worker.id}%${worker.name}%${worker.age}%${worker.salary}%${worker.position}\n")
         }
         fileOfWorkers.writeText(content.toString())
+    }
+
+    fun findAssistant(): Assistant? {
+        for (worker in _workers) {
+            if (worker is Assistant) {
+                return worker
+            }
+        }
+        return null
+    }
+
+    fun findDirector(): Director? {
+        for (worker in _workers) {
+            if (worker is Director) {
+                return worker
+            }
+        }
+        return null
     }
 }

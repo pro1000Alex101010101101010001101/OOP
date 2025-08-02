@@ -13,8 +13,8 @@ object ProductsRepository {
         _products.add(productCard)
     }
 
-    private fun loadCardsFromFile(): MutableList<ProductCard> {
-        val products: MutableList<ProductCard> = mutableListOf()
+    private fun loadCardsFromFile(): MutableSet<ProductCard> {
+        val products: MutableSet<ProductCard> = mutableSetOf()
 
         if (!file.exists()) file.createNewFile()
 
