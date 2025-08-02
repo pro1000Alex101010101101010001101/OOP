@@ -30,3 +30,7 @@ bin/
 
 ### Mac OS ###
 .DS_Store
+
+### DB ###
+.List_of_workers
+.ProductList
